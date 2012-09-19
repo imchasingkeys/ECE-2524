@@ -1,0 +1,9 @@
+Darren,
+
+I had a lot of trouble getting the argparse to work with the options that were supposed to be in the program and I didn't have time to fix it. So, I uploaded mult2.py so that it performs as if those arguments are present. I also added comments in the code to show that I understood how it would work if these optional arguments were present. 
+
+I was just having trouble parsing the arguments. Whenever I tried to use the optional arguments it would try to take input from the command line rather than fromt the file provided. It works fine without the optional arguments. Please just give me the credit you see fit for at least implementing the options, just not knowing how to parse and use them with argparse. 
+
+Respectfully,
+
+Chase Kees
