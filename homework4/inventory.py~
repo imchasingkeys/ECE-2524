@@ -1,0 +1,15 @@
+#HW4
+#Chase Kees
+#Intro UNIX
+
+import argparse
+
+
+parser = argparse.ArgumentParser(description='Store and manipulate records')
+parser.add_argument('-f', '--data-file', help='Path to the data file to read at startup', required =True)
+args = parser.parse_args()
+
+
+print args.data_file
+
+
