@@ -1,0 +1,39 @@
+Darren,
+
+
+My format for storing the data was:
+'PartID':'C86932','Description':'CAP|CHIP|TANT|4.7uF|16V|20%','Footprint':'1206','Quantity':'10'
+
+Basically each value segment inside of quotes, pairs separated by commas, and each pair split by a ":". 
+
+Here is the format for my commands: 
+
+add 'PartID':'C86932','Description':'CAP|CHIP|TANT|4.7uF|16V|20%','Footprint':'1206','Quantity':'10'
+(add followed by the record exactly as it would show up in the text)
+
+remove C86932
+(remove followed by just the part id number)
+
+set Quantity:5 Footprint:1206
+(set followed by the pair to be set followed by the pair to match, with values separated by colons)
+
+list all
+(lists all items)
+
+list all sort Footprint
+(list all followed by sort and then the attribute to sort by)
+
+list all Footprint:1206
+(list all followed by Attribute and value split by a colon)
+
+For some reason a bunch of unneeded files uploaded with all of the other ones. These shouldn't interfere with running
+the program. I couldn't figure out how to remove them. 
+
+Also, in your example listed in the HW4 description you said that you would run each action on the record file,
+and then run all the actions at once on the record file. 
+But shouldn't you run "all_actions" on a copy of the record file? Because it will have changed from running the actions
+individually right before. (i.e. you removed or added entries)
+So that would be an invalid test right? 
+
+I tested my program (using all_actions on a copy of the original records)
+and I got that there was no difference. 
