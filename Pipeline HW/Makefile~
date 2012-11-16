@@ -1,0 +1,15 @@
+#Makefile for Heard it on the Pipeline HW
+
+CC 	= g++
+CFLAGS	= -Wall -g
+
+generator: generator.o
+	${CC} ${CFLAGS} -o $@ generator.o
+consumer: consumer.o
+	${CC} ${CFLAGS} -o $@ consumer.o
+consumer.o: consumer.cpp
+	${CC} ${CFLAGS} -c $<
+generator.o: generator.cpp
+	${CC} ${CFLAGS} -c $<
+clean: 
+	rm -f *.o consumer generator
