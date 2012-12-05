@@ -1,0 +1,102 @@
+#include "Process.h"
+
+/* Initialize the process, create input/output pipes */
+Process::Process(const vector<string> &args)
+{
+	if(pipe(writepipe) == -1)
+	{
+		//cout << "pipe error" << endl;
+		//some kind of error checking
+	}
+	if(pipe(readpipe) == -1)
+	{
+		//cout << "pipe error" << endl;
+		//some kind of error checking
+	}	
+	
+	//Initialize the process
+	m_pid = fork();
+	
+	if(m_pid == -1)
+	{
+		//some kind of error for forking
+		//cout << "Fork error" << endl;
+	}
+	
+	//If process is child, connect pipes
+	if(m_pid == 0)
+	{	
+		
+		//Connect write end of readpipe to standard out
+		close(1);
+		dup(readpipe[1]);
+		close(readpipe[1]);
+		
+		//Close standard in and make writepipe act as standard in
+		close(0);
+		dup(writepipe[0]);
+		close(writepipe[0]);
+		
+		//Close write end of writepipe
+		close(writepipe[1]);
+		//Close read end of readpipe
+		close(readpipe[0]);
+		
+		//Exec consumer
+		execve("./consumer", NULL, NULL);
+	}	
+	else //Parent gets here
+	{
+		
+		//Close write end of writepipe
+		//close(readpipe[1]);
+	}
+}
+
+/* Close any open file streams or file descriptors,
+   insure that the child has terminated */
+Process::~Process()
+{
+	close(writepipe[0]);	
+	close(writepipe[1]);	
+	close(readpipe[0]);	
+	close(readpipe[1]);
+
+	fclose(m_pread);	
+}
+
+/* write a string to the child process */
+void Process::write(const string& mystring)
+{
+	char *buf;
+	
+	buf = new char [mystring.size() + 1];
+	strcpy(buf, mystring.c_str());
+	
+	::write(writepipe[1], buf, sizeof(buf));		
+}
+
+/* read a full line from the child process,
+   if no line is available, block until one becomes available */
+string Process::readline()
+{
+	char *line = NULL;
+	size_t len = 0;
+	ssize_t read;
+	
+	//Close the write end of the pipe
+	//close(writepipe[1]);
+	
+	m_pread = fdopen(readpipe[0], "r");
+	
+	read = getline(&line, &len, m_pread);
+	
+	string lineString = line;
+	
+	return lineString;	
+}
+
+void Process::exec()
+{
+	
+}
