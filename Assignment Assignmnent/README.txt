@@ -1,0 +1,4 @@
+1.
+	This assignment is relevant to the Unix course because it inspires collaboration between programmers and design with the purpose of programs working together - which is a core Unix philosophy. 
+
+2.	I invision this assignment more as a beginning of the semester introduction. Therefore, the programs should be relatively simple, but cover alot of useful programming material. (Possibly do it in Python so that students can get used to that programming language since this class is many students first experience with it). Points could then be assigned by correct working of the program, style of coding, and understanding of the purpose of the assignment. I think a write up about the experience should also be part of the grade. Each student could say what parts were hard, if they ran into any problems etc. 

@@ -1,0 +1,11 @@
+
+all: pdf html
+
+pdf:
+	pandoc assignment.md -o assignment.pdf
+html: 
+	pandoc assignment.md  -o assignment.html
+clean:
+	rm -f future.pdf future.html
+		
+
